@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { GlobalMap } from "@/components/home/global-map"
+import { DeviceShowcase } from "@/components/device-showcase"
 import { CompaniesCarousel } from "@/components/home/companies-carousel"
 import { STATS } from "@/lib/site-data"
 
@@ -46,7 +46,7 @@ export function HeroSection() {
             </div>
           </div>
           <div className="lg:pl-6">
-            <GlobalMap />
+            <DeviceShowcase />
           </div>
         </div>
 
