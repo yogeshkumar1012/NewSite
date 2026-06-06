@@ -23,11 +23,7 @@ import { Button } from "@/components/ui/button"
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal"
 import { SectionHeading } from "@/components/section-primitives"
 import { TechStackOrbit } from "@/components/tech-stack-orbit"
-import { TestimonialsCarousel } from "@/components/home/testimonials-carousel"
-import { HandshakeAnimation } from "@/components/handshake-animation"
-import { ServiceCardAnimation } from "@/components/service-card-animation"
-import { StaircaseProcessAnimation } from "@/components/staircase-process-animation"
-import { SERVICES, INDUSTRIES, CASE_STUDIES, PROCESS, BLOG_POSTS } from "@/lib/site-data"
+import { SERVICES, INDUSTRIES, CASE_STUDIES, PROCESS, TESTIMONIALS, BLOG_POSTS } from "@/lib/site-data"
 
 const SERVICE_ICONS: Record<string, any> = {
   Globe,
@@ -73,10 +69,11 @@ export function AboutSection() {
               />
             </div>
             <div className="relative">
-              <HandshakeAnimation />
-              <h3 className="font-heading mt-6 text-2xl font-bold text-center">Deal Locked</h3>
-              <p className="mt-3 text-sm text-primary-foreground/80 text-center">
-                Long-term partnerships built on trust, transparency, and delivered results. Your success is our success.
+              <Sparkles className="size-8" />
+              <h3 className="font-heading mt-6 text-2xl font-bold">Metric Driven Success</h3>
+              <p className="mt-3 text-sm text-primary-foreground/80">
+                We measure our work by your outcomes — faster releases, lower costs, and revenue
+                that compounds.
               </p>
             </div>
           </div>
@@ -96,31 +93,22 @@ export function ServicesSection() {
           subtitle="From idea to launch, we cover the full product lifecycle."
         />
         <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s, idx) => {
+          {SERVICES.map((s) => {
             const Icon = SERVICE_ICONS[s.icon]
-            const animationTypes = ["web", "mobile", "design", "software", "ai", "cloud"] as const
-            const animationType = animationTypes[idx % 6]
             return (
               <RevealItem key={s.slug}>
                 <Link
                   href={`/services/${s.slug}`}
-                  className="group block h-full overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5"
+                  className="group block h-full rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5"
                 >
-                  <div className="p-6 pb-0">
-                    <div className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                      <Icon className="size-5" />
-                    </div>
-                    <h3 className="font-heading mt-4 text-lg font-semibold">{s.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.short}</p>
+                  <div className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <Icon className="size-5" />
                   </div>
-                  <div className="p-4 flex justify-center">
-                    <ServiceCardAnimation type={animationType} />
-                  </div>
-                  <div className="px-6 pb-6">
-                    <span className="inline-flex items-center text-sm font-medium text-primary">
-                      Learn more <ArrowRight className="ml-1 size-3.5 transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </div>
+                  <h3 className="font-heading mt-4 text-lg font-semibold">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.short}</p>
+                  <span className="mt-4 inline-flex items-center text-sm font-medium text-primary">
+                    Learn more <ArrowRight className="ml-1 size-3.5 transition-transform group-hover:translate-x-1" />
+                  </span>
                 </Link>
               </RevealItem>
             )
@@ -137,11 +125,6 @@ export function ServicesSection() {
 }
 
 export function IndustriesSection() {
-  const industryItems = INDUSTRIES.map((ind, idx) => ({
-    ...ind,
-    size: idx % 4,
-  }))
-
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-6xl">
@@ -150,47 +133,16 @@ export function IndustriesSection() {
           title="Industries we serve"
           subtitle="Deep domain knowledge across regulated and fast-moving sectors."
         />
-        <div className="mt-12 space-y-6">
-          {/* Row 1: Variable widths */}
-          <RevealGroup className="grid gap-6" style={{ gridTemplateColumns: "2.5fr 1.8fr 1fr 1.5fr" }} stagger={0.05}>
-            {industryItems.slice(0, 4).map((ind) => (
-              <RevealItem key={ind.name}>
-                <div className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <h3 className="relative font-heading text-lg font-semibold transition-colors group-hover:text-primary">{ind.name}</h3>
-                </div>
-              </RevealItem>
-            ))}
-          </RevealGroup>
-
-          {/* Row 2: Different variable widths */}
-          <RevealGroup className="grid gap-6" style={{ gridTemplateColumns: "1.2fr 2.3fr 1.3fr 1.4fr" }} stagger={0.05}>
-            {industryItems.slice(4, 8).map((ind) => (
-              <RevealItem key={ind.name}>
-                <div className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <h3 className="relative font-heading text-lg font-semibold transition-colors group-hover:text-primary">{ind.name}</h3>
-                </div>
-              </RevealItem>
-            ))}
-          </RevealGroup>
-
-          {/* Row 3: Last items if exist */}
-          {industryItems.length > 8 && (
-            <RevealGroup className="grid gap-6" style={{ gridTemplateColumns: "1.5fr 1.8fr 2fr" }} stagger={0.05}>
-              {industryItems.slice(8).map((ind) => (
-                <RevealItem key={ind.name}>
-                  <div className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                    <h3 className="relative font-heading text-lg font-semibold transition-colors group-hover:text-primary">{ind.name}</h3>
-                  </div>
-                </RevealItem>
-              ))}
-            </RevealGroup>
-          )}
-        </div>
-
-        <div className="mt-10 text-center">
+        <RevealGroup className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3" stagger={0.05}>
+          {INDUSTRIES.map((ind) => (
+            <RevealItem key={ind.name}>
+              <div className="rounded-xl border border-border bg-card px-5 py-4 text-sm font-medium transition-colors hover:border-primary/40 hover:bg-accent">
+                {ind.name}
+              </div>
+            </RevealItem>
+          ))}
+        </RevealGroup>
+        <div className="mt-8 text-center">
           <Button asChild variant="outline" className="rounded-full">
             <Link href="/industries">View All Industries</Link>
           </Button>
@@ -201,31 +153,22 @@ export function IndustriesSection() {
 }
 
 export function ProcessSection() {
-  const processSteps = PROCESS.map((p) => ({
-    label: p.step,
-    description: p.desc,
-  }))
-
   return (
     <section className="bg-muted/40 px-6 py-20">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading eyebrow="How We Work" title="Our development process" subtitle="Your success is our goal, climbing every step together." />
-        <div className="mt-14">
-          <StaircaseProcessAnimation steps={processSteps} />
-        </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <SectionHeading eyebrow="How We Work" title="Our development process" />
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
           {PROCESS.map((p, i) => {
             const Icon = PROCESS_ICONS[p.icon]
             return (
-              <Reveal key={p.step} delay={i * 0.1}>
-                <div className="flex gap-4 rounded-lg border border-border/50 bg-card/50 p-4">
-                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                    <Icon className="size-4" />
+              <Reveal key={p.step} delay={i}>
+                <div className="relative text-center">
+                  <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                    <Icon className="size-5" />
                   </div>
-                  <div className="flex-1">
-                    <h4 className="font-heading font-semibold text-sm">{p.step}</h4>
-                    <p className="mt-1 text-xs text-muted-foreground">{p.desc}</p>
-                  </div>
+                  <div className="mt-3 text-xs font-bold text-primary">STEP {i + 1}</div>
+                  <h3 className="font-heading mt-1 text-base font-semibold">{p.step}</h3>
+                  <p className="mt-1 text-xs text-muted-foreground">{p.desc}</p>
                 </div>
               </Reveal>
             )
@@ -252,16 +195,13 @@ export function WhyChooseSection() {
         <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((it) => (
             <RevealItem key={it.title}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/15 cursor-pointer">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="relative flex h-full gap-4">
-                  <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-accent text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110">
-                    <it.icon className="size-5" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-heading font-semibold transition-colors duration-300 group-hover:text-primary">{it.title}</h3>
-                    <p className="mt-1 text-sm text-muted-foreground transition-colors duration-300 group-hover:text-muted-foreground/90">{it.desc}</p>
-                  </div>
+              <div className="flex h-full gap-4 rounded-2xl border border-border bg-card p-6">
+                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent text-primary">
+                  <it.icon className="size-5" />
+                </div>
+                <div>
+                  <h3 className="font-heading font-semibold">{it.title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{it.desc}</p>
                 </div>
               </div>
             </RevealItem>
@@ -315,9 +255,26 @@ export function TestimonialsSection() {
     <section className="px-6 py-20">
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow="Client Voices" title="What our partners say" />
-        <div className="mt-12">
-          <TestimonialsCarousel />
-        </div>
+        <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3">
+          {TESTIMONIALS.map((t) => (
+            <RevealItem key={t.name}>
+              <figure className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
+                <div className="flex gap-0.5 text-primary">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="size-4 fill-current" />
+                  ))}
+                </div>
+                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-foreground/90">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-5 border-t border-border pt-4">
+                  <div className="font-heading text-sm font-semibold">{t.name}</div>
+                  <div className="text-xs text-muted-foreground">{t.role}</div>
+                </figcaption>
+              </figure>
+            </RevealItem>
+          ))}
+        </RevealGroup>
       </div>
     </section>
   )
