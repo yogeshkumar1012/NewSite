@@ -247,6 +247,49 @@ export const BLOG_CATEGORIES = [
   "Digital Transformation",
 ]
 
+export const VIDEO_TESTIMONIALS = [
+  {
+    id: "video-1",
+    name: "David Chen",
+    role: "Director of Engineering, FinStream",
+    videoUrl: "https://media.istockphoto.com/id/1410644124/video/digital-grid-and-network-with-silhouette-of-man-against-dark-background.mp4?s=mp4-640x640-is",
+    thumbnail: "/testimonials-video-1.jpg",
+    quote: "Padmas Technologies transformed our legacy system into a modern, cloud-native powerhouse.",
+  },
+  {
+    id: "video-2",
+    name: "Sarah Jenkins",
+    role: "CTO, Global Logistics",
+    videoUrl: "https://media.istockphoto.com/id/1410644124/video/digital-grid-and-network-with-silhouette-of-man-against-dark-background.mp4?s=mp4-640x640-is",
+    thumbnail: "/testimonials-video-2.jpg",
+    quote: "They delivered our mobile app ahead of schedule and the quality exceeded expectations.",
+  },
+  {
+    id: "video-3",
+    name: "Maya Rodriguez",
+    role: "VP Product, ShopVerse",
+    videoUrl: "https://media.istockphoto.com/id/1410644124/video/digital-grid-and-network-with-silhouette-of-man-against-dark-background.mp4?s=mp4-640x640-is",
+    thumbnail: "/testimonials-video-3.jpg",
+    quote: "The AI recommendation engine they built directly increased our revenue.",
+  },
+  {
+    id: "video-4",
+    name: "James Wilson",
+    role: "CEO, TechStartup Inc",
+    videoUrl: "https://media.istockphoto.com/id/1410644124/video/digital-grid-and-network-with-silhouette-of-man-against-dark-background.mp4?s=mp4-640x640-is",
+    thumbnail: "/testimonials-video-4.jpg",
+    quote: "Outstanding team, exceptional results. They understand our business deeply.",
+  },
+  {
+    id: "video-5",
+    name: "Priya Sharma",
+    role: "Product Lead, Healthcare Solutions",
+    videoUrl: "https://media.istockphoto.com/id/1410644124/video/digital-grid-and-network-with-silhouette-of-man-against-dark-background.mp4?s=mp4-640x640-is",
+    thumbnail: "/testimonials-video-5.jpg",
+    quote: "The best technical team we've worked with. Highly recommended.",
+  },
+]
+
 export const TESTIMONIALS = [
   {
     quote:
@@ -265,6 +308,24 @@ export const TESTIMONIALS = [
       "The AI recommendation engine they built directly increased our revenue. Communication was transparent from day one.",
     name: "Maya Rodriguez",
     role: "VP Product, ShopVerse",
+  },
+  {
+    quote:
+      "Outstanding team with deep expertise. They solved complex problems that other vendors couldn't even understand.",
+    name: "James Wilson",
+    role: "CEO, TechStartup Inc",
+  },
+  {
+    quote:
+      "From ideation to launch, Padmas was the perfect technical partner. Zero regrets.",
+    name: "Priya Sharma",
+    role: "Product Lead, Healthcare Solutions",
+  },
+  {
+    quote:
+      "Their DevOps expertise saved us thousands every month. Truly world-class infrastructure team.",
+    name: "Akshay Patel",
+    role: "VP Engineering, FinTech",
   },
 ]
 

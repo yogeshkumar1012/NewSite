@@ -23,7 +23,8 @@ import { Button } from "@/components/ui/button"
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal"
 import { SectionHeading } from "@/components/section-primitives"
 import { TechStackOrbit } from "@/components/tech-stack-orbit"
-import { SERVICES, INDUSTRIES, CASE_STUDIES, PROCESS, TESTIMONIALS, BLOG_POSTS } from "@/lib/site-data"
+import { TestimonialsCarousel } from "@/components/home/testimonials-carousel"
+import { SERVICES, INDUSTRIES, CASE_STUDIES, PROCESS, BLOG_POSTS } from "@/lib/site-data"
 
 const SERVICE_ICONS: Record<string, any> = {
   Globe,
@@ -255,26 +256,9 @@ export function TestimonialsSection() {
     <section className="px-6 py-20">
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow="Client Voices" title="What our partners say" />
-        <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3">
-          {TESTIMONIALS.map((t) => (
-            <RevealItem key={t.name}>
-              <figure className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
-                <div className="flex gap-0.5 text-primary">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="size-4 fill-current" />
-                  ))}
-                </div>
-                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-foreground/90">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-5 border-t border-border pt-4">
-                  <div className="font-heading text-sm font-semibold">{t.name}</div>
-                  <div className="text-xs text-muted-foreground">{t.role}</div>
-                </figcaption>
-              </figure>
-            </RevealItem>
-          ))}
-        </RevealGroup>
+        <div className="mt-12">
+          <TestimonialsCarousel />
+        </div>
       </div>
     </section>
   )

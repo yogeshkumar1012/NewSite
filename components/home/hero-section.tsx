@@ -1,7 +1,8 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { DeviceShowcase } from "@/components/device-showcase"
+import { GlobalMap } from "@/components/home/global-map"
+import { CompaniesCarousel } from "@/components/home/companies-carousel"
 import { STATS } from "@/lib/site-data"
 
 export function HeroSection() {
@@ -45,21 +46,15 @@ export function HeroSection() {
             </div>
           </div>
           <div className="lg:pl-6">
-            <DeviceShowcase />
+            <GlobalMap />
           </div>
         </div>
 
         <div className="mt-16 border-t border-border py-8">
-          <p className="text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <p className="text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-8">
             Trusted by teams at
           </p>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 opacity-60">
-            {["Forbes", "Microsoft", "Google", "Tesla", "Amazon"].map((c) => (
-              <span key={c} className="font-heading text-lg font-bold tracking-tight text-muted-foreground">
-                {c}
-              </span>
-            ))}
-          </div>
+          <CompaniesCarousel />
         </div>
       </div>
     </section>
