@@ -3,6 +3,7 @@ import { Lightbulb, Eye, Award, TrendingUp } from "lucide-react"
 import { PageHero, SectionHeading, CtaBand } from "@/components/section-primitives"
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal"
 import { VALUES, TIMELINE, STATS } from "@/lib/site-data"
+import { CounterAnimation } from "@/components/counter-animation"
 
 export const metadata: Metadata = {
   title: "About Us — Padmas Technologies",
@@ -103,7 +104,7 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 lg:grid-cols-4">
           {STATS.map((s) => (
             <div key={s.label} className="text-center">
-              <div className="font-heading text-4xl font-bold text-primary">{s.value}</div>
+              <CounterAnimation value={parseInt(s.value)} className="font-heading text-4xl font-bold text-primary" />
               <div className="mt-2 text-sm text-navy-foreground/70">{s.label}</div>
             </div>
           ))}

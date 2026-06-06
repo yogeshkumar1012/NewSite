@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { PageHero, CtaBand } from "@/components/section-primitives"
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal"
 import { PortfolioGrid } from "@/components/portfolio-grid"
+import { CounterAnimation } from "@/components/counter-animation"
 import { STATS } from "@/lib/site-data"
 
 export const metadata: Metadata = {
@@ -26,7 +27,7 @@ export default function PortfolioPage() {
           <RevealGroup className="mx-auto grid max-w-5xl grid-cols-2 gap-6 sm:grid-cols-4">
             {STATS.map((s) => (
               <RevealItem key={s.label} className="text-center">
-                <div className="font-heading text-3xl font-bold text-primary sm:text-4xl">{s.value}</div>
+                <CounterAnimation value={parseInt(s.value)} className="font-heading text-3xl font-bold text-primary sm:text-4xl" />
                 <div className="mt-1 text-sm text-muted-foreground">{s.label}</div>
               </RevealItem>
             ))}
