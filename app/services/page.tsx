@@ -1,12 +1,10 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { SiteNavbar } from "@/components/site-navbar"
-import { SiteFooter } from "@/components/site-footer"
 import { PageHero, SectionHeading, CtaBand } from "@/components/section-primitives"
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal"
 import { Icon } from "@/components/icon"
-import { SERVICES, PROCESS } from "@/lib/site-data"
+import { SERVICES, PROCESS, TECH_STACK } from "@/lib/site-data"
 
 export const metadata: Metadata = {
   title: "Services | Padmas Technologies",
@@ -16,21 +14,19 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <>
-      <SiteNavbar />
-      <main>
-        <PageHero
-          eyebrow="What We Do"
-          title="Engineering Services Built for Scale"
-          subtitle="From first prototype to enterprise platform, we design, build, and operate digital products that move your business forward."
+    <main>
+      <PageHero
+        eyebrow="What We Do"
+        title="Digital Services Built for Growth"
+        subtitle="From first prototype to enterprise platform, we design, build, and operate digital products that move your business forward."
+      >
+        <Link
+          href="/contact"
+          className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
         >
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
-          >
-            Start Your Project <ArrowRight className="size-4" />
-          </Link>
-        </PageHero>
+          Start Your Project <ArrowRight className="size-4" />
+        </Link>
+      </PageHero>
 
         <section className="px-6 py-20">
           <div className="mx-auto max-w-6xl">
@@ -50,7 +46,17 @@ export default function ServicesPage() {
                       <Icon name={s.icon} className="size-6" />
                     </span>
                     <h3 className="font-heading mt-5 text-lg font-semibold text-foreground">{s.title}</h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{s.summary}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.summary}</p>
+                    
+                    <ul className="mt-4 flex-1 space-y-1.5 border-t border-border/60 pt-4 text-xs text-muted-foreground">
+                      {s.offerings.map((o) => (
+                        <li key={o} className="flex items-center gap-2">
+                          <span className="size-1.5 shrink-0 rounded-full bg-primary" />
+                          {o}
+                        </li>
+                      ))}
+                    </ul>
+
                     <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary">
                       Learn more
                       <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
@@ -90,14 +96,38 @@ export default function ServicesPage() {
           </div>
         </section>
 
+        {/* Technologies Grid Section */}
+        <section className="px-6 py-20">
+          <div className="mx-auto max-w-6xl">
+            <SectionHeading
+              eyebrow="Technologies"
+              title="Technologies We Work With"
+              subtitle="Proven frameworks, tools, and platforms to build secure, scalable solutions."
+            />
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {Object.entries(TECH_STACK).map(([category, items]) => (
+                <div key={category} className="rounded-2xl border border-border bg-card p-6">
+                  <h3 className="font-heading text-lg font-semibold text-foreground">{category}</h3>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {items.map((t) => (
+                      <span key={t} className="rounded-full bg-secondary px-3.5 py-1.5 text-xs font-semibold text-foreground">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <Reveal>
           <CtaBand
             title="Not sure where to start?"
             subtitle="Book a free consultation and we'll help you scope the right engagement."
+            buttonLabel="Schedule a Discovery Call"
           />
         </Reveal>
       </main>
-      <SiteFooter />
-    </>
   )
 }

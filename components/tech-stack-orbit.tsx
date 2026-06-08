@@ -3,10 +3,10 @@
 import { motion } from "motion/react"
 
 const NODES = [
-  { label: "Frontend", items: "React · Next · Angular", x: 18, y: 22 },
-  { label: "Backend", items: "Node · Laravel · Python", x: 82, y: 24 },
-  { label: "Mobile", items: "Flutter · RN", x: 16, y: 76 },
-  { label: "Cloud", items: "AWS · Azure · GCP", x: 84, y: 74 },
+  { label: "Frontend", items: "React · Next.js · Angular", x: 18, y: 22 },
+  { label: "Backend", items: "Node.js · Laravel · Python", x: 82, y: 24 },
+  { label: "Mobile", items: "Flutter · React Native", x: 16, y: 76 },
+  { label: "Cloud", items: "AWS · Azure · Google Cloud", x: 84, y: 74 },
 ]
 const CENTER = { x: 50, y: 50 }
 

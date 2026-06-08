@@ -29,6 +29,17 @@ export function SiteNavbar() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [mobileOpen])
+
   return (
     <div className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
       <header
@@ -66,15 +77,24 @@ export function SiteNavbar() {
                   className="absolute left-0 top-full w-72 pt-2"
                 >
                   <div className="overflow-hidden rounded-xl border border-border/60 bg-popover/95 p-2 shadow-xl backdrop-blur-xl">
-                    {SERVICES.map((s) => (
-                      <Link
-                        key={s.slug}
-                        href={`/services/${s.slug}`}
-                        className="block rounded-lg px-3 py-2 text-sm text-foreground/80 transition-colors hover:bg-accent hover:text-accent-foreground"
-                      >
-                        {s.title}
-                      </Link>
-                    ))}
+                    {SERVICES.map((s) => {
+                      const label = s.slug === "mobile-development" 
+                        ? "Mobile Apps" 
+                        : s.slug === "custom-software-development" 
+                        ? "Software Development" 
+                        : s.slug === "ai-development" 
+                        ? "AI Solutions" 
+                        : s.title;
+                      return (
+                        <Link
+                          key={s.slug}
+                          href={`/services/${s.slug}`}
+                          className="block rounded-lg px-3 py-2 text-sm text-foreground/80 transition-colors hover:bg-accent hover:text-accent-foreground"
+                        >
+                          {label}
+                        </Link>
+                      );
+                    })}
                   </div>
                 </motion.div>
               )}
@@ -116,16 +136,25 @@ export function SiteNavbar() {
           >
             <div className="flex flex-col gap-1">
               <span className="px-3 py-1 text-xs font-semibold uppercase text-muted-foreground">Services</span>
-              {SERVICES.map((s) => (
-                <Link
-                  key={s.slug}
-                  href={`/services/${s.slug}`}
-                  onClick={() => setMobileOpen(false)}
-                  className="rounded-lg px-3 py-2 text-sm text-foreground/80 hover:bg-accent"
-                >
-                  {s.title}
-                </Link>
-              ))}
+              {SERVICES.map((s) => {
+                const label = s.slug === "mobile-development" 
+                  ? "Mobile Apps" 
+                  : s.slug === "custom-software-development" 
+                  ? "Software Development" 
+                  : s.slug === "ai-development" 
+                  ? "AI Solutions" 
+                  : s.title;
+                return (
+                  <Link
+                    key={s.slug}
+                    href={`/services/${s.slug}`}
+                    onClick={() => setMobileOpen(false)}
+                    className="rounded-lg px-3 py-2 text-sm text-foreground/80 hover:bg-accent"
+                  >
+                    {label}
+                  </Link>
+                );
+              })}
               <div className="my-2 h-px bg-border" />
               {NAV_LINKS.map((l) => (
                 <Link

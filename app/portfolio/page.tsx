@@ -1,6 +1,4 @@
 import type { Metadata } from "next"
-import { SiteNavbar } from "@/components/site-navbar"
-import { SiteFooter } from "@/components/site-footer"
 import { PageHero, CtaBand } from "@/components/section-primitives"
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal"
 import { PortfolioGrid } from "@/components/portfolio-grid"
@@ -13,14 +11,12 @@ export const metadata: Metadata = {
 
 export default function PortfolioPage() {
   return (
-    <>
-      <SiteNavbar />
-      <main>
-        <PageHero
-          eyebrow="Our Work"
-          title="Outcomes, Not Just Output"
-          subtitle="We measure success by the impact we create. Explore a selection of projects and the results they delivered."
-        />
+    <main>
+      <PageHero
+        eyebrow="Our Work"
+        title="Our Work Speaks Through Results"
+        subtitle="We measure success by the impact we create. Explore a selection of projects and the results they delivered."
+      />
 
         <section className="border-b border-border bg-secondary px-6 py-12">
           <RevealGroup className="mx-auto grid max-w-5xl grid-cols-2 gap-6 sm:grid-cols-4">
@@ -42,7 +38,5 @@ export default function PortfolioPage() {
           />
         </Reveal>
       </main>
-      <SiteFooter />
-    </>
   )
 }

@@ -8,11 +8,11 @@ import { SectionHeading } from "@/components/section-primitives"
 import { motion, AnimatePresence } from "motion/react"
 import { CASE_STUDIES } from "@/lib/site-data"
 
-const INDUSTRIES = ["All", ...Array.from(new Set(CASE_STUDIES.map((c) => c.industry)))]
+const FILTERS = ["All", "Web Apps", "Mobile Apps", "SaaS", "AI Solutions", "E-commerce", "Enterprise"]
 
 export function PortfolioGrid() {
   const [filter, setFilter] = useState("All")
-  const filtered = filter === "All" ? CASE_STUDIES : CASE_STUDIES.filter((c) => c.industry === filter)
+  const filtered = filter === "All" ? CASE_STUDIES : CASE_STUDIES.filter((c) => c.categories.includes(filter))
 
   return (
     <section className="px-6 py-20">
@@ -24,7 +24,7 @@ export function PortfolioGrid() {
         />
 
         <div className="mt-10 flex flex-wrap justify-center gap-2">
-          {INDUSTRIES.map((ind) => (
+          {FILTERS.map((ind) => (
             <button
               key={ind}
               onClick={() => setFilter(ind)}
@@ -67,9 +67,20 @@ export function PortfolioGrid() {
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col p-6">
-                    <h3 className="font-heading text-lg font-semibold text-foreground">{c.title}</h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{c.result}</p>
-                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                    <h3 className="font-heading text-lg font-bold text-foreground">{c.title}</h3>
+                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                      <strong className="text-foreground">Overview:</strong> {c.challenge}
+                    </p>
+                    <div className="mt-4 flex-1 border-t border-border/60 pt-4">
+                      <div className="flex flex-wrap gap-1.5">
+                        {c.tech.map((t) => (
+                          <span key={t} className="rounded bg-secondary px-2 py-0.5 text-[10px] font-semibold text-foreground">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary">
                       View case study
                       <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                     </span>

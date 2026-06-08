@@ -6,7 +6,7 @@ export function SiteFooter() {
   return (
     <footer className="bg-navy text-navy-foreground">
       <div className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-6">
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2">
               <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
@@ -54,6 +54,22 @@ export function SiteFooter() {
                 { l: "Industries", h: "/industries" },
                 { l: "Careers", h: "/careers" },
                 { l: "Contact", h: "/contact" },
+              ].map((i) => (
+                <li key={i.h}>
+                  <Link href={i.h} className="transition-colors hover:text-navy-foreground">
+                    {i.l}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-heading text-sm font-semibold">Resources</h4>
+            <ul className="mt-4 space-y-2.5 text-sm text-navy-foreground/70">
+              {[
+                { l: "Insights", h: "/insights" },
+                { l: "Case Studies", h: "/portfolio" },
               ].map((i) => (
                 <li key={i.h}>
                   <Link href={i.h} className="transition-colors hover:text-navy-foreground">

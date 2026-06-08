@@ -1,6 +1,4 @@
 import type { Metadata } from "next"
-import { SiteNavbar } from "@/components/site-navbar"
-import { SiteFooter } from "@/components/site-footer"
 import { PageHero, SectionHeading, CtaBand } from "@/components/section-primitives"
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal"
 import { TechStackOrbit } from "@/components/tech-stack-orbit"
@@ -14,14 +12,12 @@ export const metadata: Metadata = {
 
 export default function TechnologiesPage() {
   return (
-    <>
-      <SiteNavbar />
-      <main>
-        <PageHero
-          eyebrow="Our Tech Stack"
-          title="Modern Technology, Engineered to Last"
-          subtitle="We choose proven, scalable technologies and stay on the cutting edge so your product is fast today and maintainable tomorrow."
-        />
+    <main>
+      <PageHero
+        eyebrow="Our Tech Stack"
+        title="Technologies We Work With"
+        subtitle="We choose proven, scalable technologies and stay on the cutting edge so your product is fast today and maintainable tomorrow."
+      />
 
         <section className="bg-navy px-6 py-16 text-navy-foreground">
           <div className="mx-auto max-w-5xl">
@@ -68,7 +64,5 @@ export default function TechnologiesPage() {
           />
         </Reveal>
       </main>
-      <SiteFooter />
-    </>
   )
 }

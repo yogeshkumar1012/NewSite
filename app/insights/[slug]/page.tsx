@@ -3,8 +3,6 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft, ArrowRight } from "lucide-react"
-import { SiteNavbar } from "@/components/site-navbar"
-import { SiteFooter } from "@/components/site-footer"
 import { CtaBand } from "@/components/section-primitives"
 import { Reveal } from "@/components/reveal"
 import { BLOG_POSTS } from "@/lib/site-data"
@@ -36,10 +34,8 @@ export default async function BlogDetailPage({
   const related = BLOG_POSTS.filter((p) => p.slug !== slug).slice(0, 3)
 
   return (
-    <>
-      <SiteNavbar />
-      <main>
-        <section className="relative overflow-hidden bg-navy pt-36 pb-16 text-navy-foreground sm:pt-40">
+    <main>
+      <section className="relative overflow-hidden bg-navy pt-36 pb-16 text-navy-foreground sm:pt-40">
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute right-0 top-10 size-72 rounded-full bg-primary/30 blur-3xl" />
           </div>
@@ -168,7 +164,5 @@ export default async function BlogDetailPage({
           <CtaBand title="Have a project in mind?" subtitle="Let's turn these ideas into your next product." />
         </Reveal>
       </main>
-      <SiteFooter />
-    </>
   )
 }

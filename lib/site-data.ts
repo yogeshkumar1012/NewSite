@@ -8,8 +8,8 @@ export const SERVICES = [
     summary:
       "We build fast, scalable, and secure web applications tailored to your business goals — from corporate sites to complex SaaS platforms.",
     offerings: ["Corporate Websites", "Custom Web Apps", "Portals", "SaaS Platforms"],
-    challenges: ["Slow websites", "Legacy systems", "Scalability issues", "Poor SEO performance"],
-    solutions: ["Corporate Websites", "SaaS Products", "Customer Portals", "Headless commerce"],
+    challenges: ["Slow websites", "Legacy systems", "Scalability issues"],
+    solutions: ["Corporate Websites", "SaaS Products", "Portals"],
     tech: ["React", "Next.js", "Node.js", "PostgreSQL", "AWS"],
   },
   {
@@ -20,7 +20,7 @@ export const SERVICES = [
     tagline: "Native & Cross-Platform Mobile Apps",
     summary:
       "We design and ship beautiful, high-performance mobile experiences across Android and iOS with native and cross-platform technologies.",
-    offerings: ["Android Apps", "iOS Apps", "Flutter Apps", "React Native Apps"],
+    offerings: ["Android Apps", "iOS Apps", "Flutter Apps"],
     challenges: ["Fragmented platforms", "Poor performance", "Low retention", "Offline support"],
     solutions: ["Native Android & iOS", "Cross-platform builds", "Offline-first apps", "App store launch"],
     tech: ["Flutter", "React Native", "Swift", "Kotlin", "Firebase"],
@@ -72,7 +72,7 @@ export const SERVICES = [
     tagline: "Cloud Infrastructure & DevOps",
     summary:
       "We architect resilient cloud infrastructure and CI/CD pipelines that keep your products fast, secure, and always available.",
-    offerings: ["AWS", "Azure", "DevOps", "Kubernetes"],
+    offerings: ["AWS", "Azure", "DevOps"],
     challenges: ["Downtime risk", "Slow releases", "Rising cloud costs", "Security gaps"],
     solutions: ["Cloud migration", "CI/CD pipelines", "Auto-scaling infra", "Cost optimization"],
     tech: ["AWS", "Azure", "GCP", "Kubernetes", "Terraform"],
@@ -92,12 +92,12 @@ export const INDUSTRIES = [
 ]
 
 export const TECH_STACK = {
-  Frontend: ["React", "Next.js", "Vue.js", "Angular"],
+  Frontend: ["React", "Next.js", "Vue.js"],
   Backend: ["Node.js", "Laravel", "Python"],
   Mobile: ["Flutter", "React Native"],
   Database: ["MySQL", "PostgreSQL", "MongoDB"],
   Cloud: ["AWS", "Azure", "GCP"],
-  AI: ["OpenAI", "LangChain", "Claude", "Vector DBs"],
+  AI: ["OpenAI", "LangChain", "Claude", "Vector Databases"],
 }
 
 export const PROCESS = [
@@ -121,6 +121,7 @@ export const CASE_STUDIES = [
     slug: "legacy-migration-to-cloud",
     title: "Legacy Migration to Cloud",
     industry: "Logistics",
+    categories: ["Enterprise", "SaaS"],
     image: "/case-cloud-migration.png",
     challenge: "A 20-year-old monolith caused frequent outages and slow releases.",
     solution: "Re-architected to a containerized microservices platform on AWS with CI/CD.",
@@ -137,6 +138,7 @@ export const CASE_STUDIES = [
     slug: "telemedicine-platform",
     title: "Telemedicine Platform",
     industry: "Healthcare",
+    categories: ["Web Apps", "Mobile Apps", "SaaS"],
     image: "/case-telemedicine.png",
     challenge: "No HIPAA-compliant way to deliver remote consultations at scale.",
     solution: "Built a secure video + scheduling platform with EHR integration.",
@@ -153,6 +155,7 @@ export const CASE_STUDIES = [
     slug: "ai-recommendation-engine",
     title: "AI Recommendation Engine",
     industry: "E-commerce",
+    categories: ["AI Solutions", "E-commerce", "SaaS"],
     image: "/case-ai-engine.png",
     challenge: "Low conversion due to generic product discovery.",
     solution: "Deployed a real-time AI recommendation engine with vector search.",
@@ -276,7 +279,7 @@ export const VALUES = [
 ]
 
 export const TIMELINE = [
-  { year: "2020", title: "Padmas Started", desc: "Founded with a vision for engineering-led digital transformation." },
+  { year: "2020", title: "Started", desc: "Founded with a vision for engineering-led digital transformation." },
   { year: "2021", title: "First 50 Projects", desc: "Crossed 50 successful deliveries across web and mobile." },
   { year: "2023", title: "International Clients", desc: "Expanded to serve clients across 10+ countries." },
   { year: "2025", title: "AI Solutions Expansion", desc: "Launched a dedicated AI & automation practice." },

@@ -11,19 +11,12 @@ export const metadata: Metadata = {
 
 const VALUE_ICONS: Record<string, any> = { Lightbulb, Eye, Award, TrendingUp }
 
-const TEAM = [
-  { name: "Arjun Padma", role: "Founder & CEO", initials: "AP" },
-  { name: "Divya Rao", role: "Chief Technology Officer", initials: "DR" },
-  { name: "Vikram Sethi", role: "VP of Engineering", initials: "VS" },
-  { name: "Ananya Bose", role: "Head of Design", initials: "AB" },
-]
-
 export default function AboutPage() {
   return (
     <main>
       <PageHero
         eyebrow="About Padmas"
-        title="Engineering-led digital transformation"
+        title="About Padmas Technologies"
         subtitle="We are a team of engineers, designers, and strategists obsessed with building software that moves businesses forward."
       />
 
@@ -78,25 +71,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Leadership */}
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-6xl">
-          <SectionHeading eyebrow="Leadership" title="The team behind the work" />
-          <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {TEAM.map((m) => (
-              <RevealItem key={m.name}>
-                <div className="rounded-2xl border border-border bg-card p-6 text-center">
-                  <div className="mx-auto flex size-20 items-center justify-center rounded-full bg-primary font-heading text-xl font-bold text-primary-foreground">
-                    {m.initials}
-                  </div>
-                  <h3 className="font-heading mt-4 font-semibold">{m.name}</h3>
-                  <p className="text-sm text-muted-foreground">{m.role}</p>
-                </div>
-              </RevealItem>
-            ))}
-          </RevealGroup>
-        </div>
-      </section>
+
 
       {/* Stats */}
       <section className="bg-navy px-6 py-16 text-navy-foreground">

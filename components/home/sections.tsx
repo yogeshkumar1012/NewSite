@@ -47,9 +47,9 @@ export function AboutSection() {
             Your digital transformation partner
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            Padmas Technologies helps businesses accelerate growth through custom software
-            development, mobile applications, cloud solutions, AI integration, and enterprise-grade
-            digital products built to scale.
+            Padmas Technologies is a digital transformation partner helping businesses accelerate
+            growth through custom software development, mobile applications, cloud solutions, AI
+            integration, and enterprise-grade digital products.
           </p>
           <Button asChild variant="outline" className="mt-6 rounded-full">
             <Link href="/about">
@@ -226,7 +226,7 @@ export function CaseStudiesSection() {
           {CASE_STUDIES.map((c) => (
             <RevealItem key={c.slug}>
               <Link
-                href={`/case-studies/${c.slug}`}
+                href={`/portfolio/${c.slug}`}
                 className="group block overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="aspect-[16/10] overflow-hidden">
@@ -238,8 +238,18 @@ export function CaseStudiesSection() {
                 </div>
                 <div className="p-6">
                   <span className="text-xs font-semibold uppercase tracking-wide text-primary">{c.industry}</span>
-                  <h3 className="font-heading mt-2 text-lg font-semibold">{c.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{c.result}</p>
+                  <h3 className="font-heading mt-2 text-lg font-bold text-foreground">{c.title}</h3>
+                  <div className="mt-4 space-y-2 text-xs border-t border-border/60 pt-4">
+                    <p className="leading-relaxed text-muted-foreground">
+                      <strong className="text-foreground">Challenge:</strong> {c.challenge}
+                    </p>
+                    <p className="leading-relaxed text-muted-foreground">
+                      <strong className="text-foreground">Solution:</strong> {c.solution}
+                    </p>
+                    <p className="leading-relaxed text-primary">
+                      <strong className="text-foreground">Result:</strong> {c.result}
+                    </p>
+                  </div>
                 </div>
               </Link>
             </RevealItem>

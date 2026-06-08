@@ -53,7 +53,7 @@ function Button({
 
   if (asChild && React.isValidElement(children)) {
     const child = React.Children.only(children) as React.ReactElement
-    const childClassName = cn(classes, (child.props && child.props.className) || '')
+    const childClassName = cn(classes, (child.props && (child.props as any).className) || '')
     const cleanProps = { ...props }
     // ensure we don't forward `asChild` to DOM
     delete (cleanProps as any).asChild
