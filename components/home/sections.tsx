@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link"
+import { useEffect, useState, useRef } from "react"
 import {
   ArrowRight,
   Globe,
@@ -18,12 +21,25 @@ import {
   Rocket,
   LifeBuoy,
   Star,
+  HeartPulse,
+  Landmark,
+  ShoppingCart,
+  Factory,
+  GraduationCap,
+  Plane,
+  Home,
+  Shield,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal"
 import { SectionHeading } from "@/components/section-primitives"
 import { TechStackOrbit } from "@/components/tech-stack-orbit"
-import { SERVICES, INDUSTRIES, CASE_STUDIES, PROCESS, TESTIMONIALS, BLOG_POSTS } from "@/lib/site-data"
+import { SERVICES, CASE_STUDIES, PROCESS, TESTIMONIALS, BLOG_POSTS } from "@/lib/site-data"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Autoplay, Pagination } from "swiper/modules"
+
+import "swiper/css"
+import "swiper/css/pagination"
 
 const SERVICE_ICONS: Record<string, any> = {
   Globe,
@@ -34,6 +50,19 @@ const SERVICE_ICONS: Record<string, any> = {
   Cloud,
 }
 const PROCESS_ICONS: Record<string, any> = { Search, PenTool, Code2, ShieldCheck, Rocket, LifeBuoy }
+
+const STATIC_INDUSTRIES = [
+  { name: "Healthcare", icon: HeartPulse, className: "col-span-2 md:col-span-2" },
+  { name: "Fintech", icon: Landmark, className: "col-span-2 md:col-span-1" },
+  { name: "Retail", icon: ShoppingCart, className: "col-span-2 md:col-span-1" },
+  { name: "Industry 4.0", icon: Factory, className: "col-span-2 md:col-span-2" },
+  { name: "EdTech", icon: GraduationCap, className: "col-span-2 md:col-span-1" },
+  { name: "Logistics", icon: Plane, className: "col-span-2 md:col-span-2" },
+  { name: "PropTech", icon: Home, className: "col-span-2 md:col-span-1" },
+  { name: "Cybersecurity", icon: Shield, className: "col-span-2 md:col-span-2" },
+  { name: "AI Solutions", icon: Sparkles, className: "col-span-2 md:col-span-2" },
+  { name: "SaaS Startups", icon: Code2, className: "col-span-2 md:col-span-4" },
+]
 
 export function AboutSection() {
   return (
@@ -133,15 +162,25 @@ export function IndustriesSection() {
           title="Industries we serve"
           subtitle="Deep domain knowledge across regulated and fast-moving sectors."
         />
-        <RevealGroup className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3" stagger={0.05}>
-          {INDUSTRIES.map((ind) => (
-            <RevealItem key={ind.name}>
-              <div className="rounded-xl border border-border bg-card px-5 py-4 text-sm font-medium transition-colors hover:border-primary/40 hover:bg-accent">
-                {ind.name}
-              </div>
-            </RevealItem>
-          ))}
+
+        <RevealGroup className="mt-12 grid grid-cols-2 md:grid-cols-6 gap-3" stagger={0.05}>
+          {STATIC_INDUSTRIES.map((ind) => {
+            const Icon = ind.icon
+            return (
+              <RevealItem key={ind.name} className={ind.className}>
+                <div className="group flex h-full flex-col justify-between rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
+                  <div className="flex size-11 items-center justify-center rounded-xl bg-[#eff4ff] text-blue-700 transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <Icon className="size-5" />
+                  </div>
+                  <span className="text-xl font-bold text-foreground tracking-tight mt-6">
+                    {ind.name}
+                  </span>
+                </div>
+              </RevealItem>
+            )
+          })}
         </RevealGroup>
+
         <div className="mt-8 text-center">
           <Button asChild variant="outline" className="rounded-full">
             <Link href="/industries">View All Industries</Link>
@@ -151,26 +190,74 @@ export function IndustriesSection() {
     </section>
   )
 }
-
 export function ProcessSection() {
+  const [activeIndex, setActiveIndex] = useState(-1)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return
+      const rect = containerRef.current.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+      const isMobile = window.innerWidth < 1024
+
+      const startPoint = isMobile ? windowHeight * 0.95 : windowHeight * 0.8
+      const endPoint = isMobile ? windowHeight * 0.05 : windowHeight * 0.2
+      const currentPos = rect.top
+
+      if (currentPos > startPoint) {
+        setActiveIndex(-1)
+      } else if (currentPos < endPoint) {
+        setActiveIndex(PROCESS.length - 1)
+      } else {
+        const progress = (startPoint - currentPos) / (startPoint - endPoint)
+        const targetIndex = Math.floor(progress * PROCESS.length)
+        setActiveIndex(Math.min(targetIndex, PROCESS.length - 1))
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <section className="bg-muted/40 px-6 py-20">
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow="How We Work" title="Our development process" />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
+        <div ref={containerRef} className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
           {PROCESS.map((p, i) => {
             const Icon = PROCESS_ICONS[p.icon]
+            const isActive = i <= activeIndex
             return (
-              <Reveal key={p.step} delay={i}>
-                <div className="relative text-center">
-                  <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                    <Icon className="size-5" />
-                  </div>
-                  <div className="mt-3 text-xs font-bold text-primary">STEP {i + 1}</div>
-                  <h3 className="font-heading mt-1 text-base font-semibold">{p.step}</h3>
-                  <p className="mt-1 text-xs text-muted-foreground">{p.desc}</p>
+              <div key={p.step} className="relative text-center group">
+                <div
+                  className={`mx-auto flex size-12 items-center justify-center rounded-full transition-all duration-500 scale-100 ${isActive
+                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20 ring-4 ring-primary/10"
+                    : "bg-background border border-border text-muted-foreground"
+                    }`}
+                >
+                  <Icon className="size-5" />
                 </div>
-              </Reveal>
+                <div
+                  className={`mt-3 text-xs font-bold transition-colors duration-500 ${isActive ? "text-primary" : "text-muted-foreground/60"
+                    }`}
+                >
+                  STEP {i + 1}
+                </div>
+                <h3
+                  className={`font-heading mt-1 text-base font-semibold transition-colors duration-500 ${isActive ? "text-foreground" : "text-muted-foreground/80"
+                    }`}
+                >
+                  {p.step}
+                </h3>
+                <p
+                  className={`mt-1 text-xs transition-colors duration-500 ${isActive ? "text-muted-foreground" : "text-muted-foreground/50"
+                    }`}
+                >
+                  {p.desc}
+                </p>
+              </div>
             )
           })}
         </div>
@@ -178,7 +265,6 @@ export function ProcessSection() {
     </section>
   )
 }
-
 export function WhyChooseSection() {
   const items = [
     { title: "Experienced Team", desc: "Senior engineers with deep delivery experience.", icon: Users },
@@ -195,8 +281,8 @@ export function WhyChooseSection() {
         <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((it) => (
             <RevealItem key={it.title}>
-              <div className="flex h-full gap-4 rounded-2xl border border-border bg-card p-6">
-                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent text-primary">
+              <div className="group flex h-full gap-4 rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
+                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                   <it.icon className="size-5" />
                 </div>
                 <div>
@@ -227,7 +313,7 @@ export function CaseStudiesSection() {
             <RevealItem key={c.slug}>
               <Link
                 href={`/portfolio/${c.slug}`}
-                className="group block overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-xl"
+                className="group block overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5"
               >
                 <div className="aspect-[16/10] overflow-hidden">
                   <img
@@ -262,29 +348,71 @@ export function CaseStudiesSection() {
 
 export function TestimonialsSection() {
   return (
-    <section className="px-6 py-20">
+    <section className="px-6 py-20 overflow-hidden">
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow="Client Voices" title="What our partners say" />
-        <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3">
-          {TESTIMONIALS.map((t) => (
-            <RevealItem key={t.name}>
-              <figure className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
-                <div className="flex gap-0.5 text-primary">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="size-4 fill-current" />
-                  ))}
-                </div>
-                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-foreground/90">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-5 border-t border-border pt-4">
-                  <div className="font-heading text-sm font-semibold">{t.name}</div>
-                  <div className="text-xs text-muted-foreground">{t.role}</div>
-                </figcaption>
-              </figure>
-            </RevealItem>
-          ))}
-        </RevealGroup>
+        <Reveal className="mt-12">
+          <Swiper
+            modules={[Autoplay, Pagination]}
+            spaceBetween={24}
+            slidesPerView={1}
+            loop={true}
+            autoplay={{
+              delay: 1000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            speed={1000}
+            pagination={{
+              clickable: true,
+              dynamicBullets: true,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 24,
+              },
+            }}
+            className="pb-16 px-4"
+            style={{
+              "--swiper-theme-color": "var(--color-primary)",
+              "--swiper-pagination-bullet-inactive-color": "var(--color-muted-foreground)",
+              "--swiper-pagination-bullet-inactive-opacity": "0.3",
+              "--swiper-pagination-bullet-size": "8px",
+              "--swiper-pagination-bullet-horizontal-gap": "6px",
+            } as React.CSSProperties}
+          >
+            {TESTIMONIALS.map((t) => (
+              <SwiperSlide key={t.name} className="h-auto py-4">
+                <figure className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
+                  <div className="flex gap-0.5 text-primary">
+                    {Array.from({ length: 5 }).map((_, i) => {
+                      const rating = t.rating || 5
+                      return (
+                        <Star
+                          key={i}
+                          className={`size-4 ${i < rating ? "fill-current" : "text-muted-foreground/30"
+                            }`}
+                        />
+                      )
+                    })}
+                  </div>
+                  <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-foreground/90 italic">
+                    &ldquo;{t.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-5 border-t border-border pt-4">
+                    <div className="font-heading text-sm font-semibold">{t.name}</div>
+                    <div className="text-xs text-muted-foreground">{t.role}</div>
+                  </figcaption>
+                </figure>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </Reveal>
       </div>
     </section>
   )

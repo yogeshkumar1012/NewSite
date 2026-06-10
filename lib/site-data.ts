@@ -256,18 +256,56 @@ export const TESTIMONIALS = [
       "Padmas Technologies transformed our legacy system into a modern, cloud-native powerhouse. Their engineering discipline and strategic thinking were unparalleled.",
     name: "David Chen",
     role: "Director of Engineering, FinStream",
+    rating: 5,
   },
   {
     quote:
       "They delivered our mobile app ahead of schedule and the quality exceeded expectations. A true product partner, not just a vendor.",
     name: "Sarah Jenkins",
     role: "CTO, Global Logistics",
+    rating: 5,
   },
   {
     quote:
       "The AI recommendation engine they built directly increased our revenue. Communication was transparent from day one.",
     name: "Maya Rodriguez",
     role: "VP Product, ShopVerse",
+    rating: 5,
+  },
+  {
+    quote:
+      "Partnering with Padmas was a game-changer for our telehealth initiative. Their knowledge of HIPAA security compliance made the audit process seamless.",
+    name: "Elena Rostova",
+    role: "VP of Technology, HealthFlow",
+    rating: 5,
+  },
+  {
+    quote:
+      "Padmas built a solid e-commerce checkout flow. While onboarding took a little longer than expected, the final product is incredibly performant and has reduced cart abandonment significantly.",
+    name: "James Sterling",
+    role: "Founder, Sterling Retail",
+    rating: 4,
+  },
+  {
+    quote:
+      "Excellent communication and high-quality UI design. The team was highly responsive to changes, though we had to adjust project timelines twice to accommodate scope adjustments. Highly reliable software partner.",
+    name: "Priya Sharma",
+    role: "COO, EdTech Labs",
+    rating: 4,
+  },
+  {
+    quote:
+      "Their DevOps team streamlined our CI/CD pipelines and optimized our AWS infrastructure. We went from bi-weekly deploys to multiple times a day with zero downtime.",
+    name: "Marcus Vance",
+    role: "Head of Infrastructure, SecureFin",
+    rating: 5,
+  },
+  {
+    quote:
+      "The custom CRM dashboard has saved our sales team hours of manual input. Some advanced reporting features took an extra sprint to refine, but the overall system is fast and robust.",
+    name: "Liam Gallagher",
+    role: "Director of Sales, PropTech Group",
+    rating: 4,
   },
 ]
 

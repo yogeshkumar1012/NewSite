@@ -29,7 +29,7 @@ export function InsightsList() {
               key={c}
               onClick={() => setCategory(c)}
               className={
-                "rounded-full px-4 py-2 text-sm font-medium transition-colors " +
+                "rounded-full px-4 py-2 text-sm hover:cursor-pointer font-medium transition-colors " +
                 (category === c
                   ? "bg-primary text-primary-foreground"
                   : "bg-secondary text-foreground/70 hover:text-foreground")

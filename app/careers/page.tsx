@@ -44,11 +44,11 @@ export default function CareersPage() {
           <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {BENEFITS.map((b) => (
               <RevealItem key={b.title}>
-                <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
-                  <div className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary">
+                <div className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
+                  <div className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
                     <b.icon className="size-5" />
                   </div>
-                  <h3 className="font-heading mt-4 text-base font-bold text-foreground">{b.title}</h3>
+                  <h3 className="font-heading mt-4 text-base font-bold text-foreground transition-colors group-hover:text-primary">{b.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
                 </div>
               </RevealItem>
@@ -68,9 +68,9 @@ export default function CareersPage() {
           <div className="mt-12 grid gap-6 sm:grid-cols-3 lg:grid-cols-5">
             {HIRING_PROCESS.map((p, i) => (
               <Reveal key={p.step} delay={i}>
-                <div className="relative h-full rounded-2xl border border-border bg-card p-6">
+                <div className="group relative h-full rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
                   <div className="font-heading text-xs font-bold text-primary uppercase">Step {i + 1}</div>
-                  <h3 className="font-heading mt-2 text-base font-bold text-foreground">{p.step.split(". ")[1]}</h3>
+                  <h3 className="font-heading mt-2 text-base font-bold text-foreground transition-colors group-hover:text-primary">{p.step.split(". ")[1]}</h3>
                   <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{p.desc}</p>
                 </div>
               </Reveal>
@@ -90,9 +90,9 @@ export default function CareersPage() {
           <div className="mt-12 space-y-4">
             {POSITIONS.map((pos, i) => (
               <Reveal key={pos.title} delay={i}>
-                <div className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 sm:flex-row sm:items-center sm:justify-between transition-colors hover:border-primary/40">
+                <div className="group flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 sm:flex-row sm:items-center sm:justify-between transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
                   <div>
-                    <h3 className="font-heading text-base font-bold text-foreground">{pos.title}</h3>
+                    <h3 className="font-heading text-base font-bold text-foreground transition-colors group-hover:text-primary">{pos.title}</h3>
                     <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
                       <span className="flex items-center gap-1">
                         <Briefcase className="size-3.5" /> {pos.dept}

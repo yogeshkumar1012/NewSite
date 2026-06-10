@@ -22,28 +22,34 @@ export default function AboutPage() {
 
       {/* Company story */}
       <section className="px-6 py-20">
-        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-3">
-          <Reveal>
-            <h2 className="font-heading text-2xl font-bold">Our Story</h2>
-            <p className="mt-4 leading-relaxed text-muted-foreground">
-              Padmas Technologies began in 2020 with a simple belief: great engineering should be
-              accessible to every ambitious business. What started as a small team taking on bold
-              projects has grown into a global digital partner.
-            </p>
+        <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-3">
+          <Reveal className="h-full">
+            <div className="group h-full rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
+              <h2 className="font-heading text-2xl font-bold text-foreground transition-colors group-hover:text-primary">Our Story</h2>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                Padmas Technologies began in 2020 with a simple belief: great engineering should be
+                accessible to every ambitious business. What started as a small team taking on bold
+                projects has grown into a global digital partner.
+              </p>
+            </div>
           </Reveal>
-          <Reveal delay={1}>
-            <h2 className="font-heading text-2xl font-bold">Our Mission</h2>
-            <p className="mt-4 leading-relaxed text-muted-foreground">
-              To help startups and enterprises accelerate growth through custom software, mobile,
-              cloud, and AI — delivered with transparency and engineering rigor.
-            </p>
+          <Reveal delay={1} className="h-full">
+            <div className="group h-full rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
+              <h2 className="font-heading text-2xl font-bold text-foreground transition-colors group-hover:text-primary">Our Mission</h2>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                To help startups and enterprises accelerate growth through custom software, mobile,
+                cloud, and AI — delivered with transparency and engineering rigor.
+              </p>
+            </div>
           </Reveal>
-          <Reveal delay={2}>
-            <h2 className="font-heading text-2xl font-bold">Our Vision</h2>
-            <p className="mt-4 leading-relaxed text-muted-foreground">
-              A world where every business, regardless of size, can ship world-class digital
-              products that scale and delight their customers.
-            </p>
+          <Reveal delay={2} className="h-full">
+            <div className="group h-full rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
+              <h2 className="font-heading text-2xl font-bold text-foreground transition-colors group-hover:text-primary">Our Vision</h2>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                A world where every business, regardless of size, can ship world-class digital
+                products that scale and delight their customers.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -57,11 +63,11 @@ export default function AboutPage() {
               const Icon = VALUE_ICONS[v.icon]
               return (
                 <RevealItem key={v.title}>
-                  <div className="h-full rounded-2xl border border-border bg-card p-6">
-                    <div className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary">
+                  <div className="group h-full rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
+                    <div className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
                       <Icon className="size-5" />
                     </div>
-                    <h3 className="font-heading mt-4 text-lg font-semibold">{v.title}</h3>
+                    <h3 className="font-heading mt-4 text-lg font-semibold text-foreground transition-colors group-hover:text-primary">{v.title}</h3>
                     <p className="mt-2 text-sm text-muted-foreground">{v.desc}</p>
                   </div>
                 </RevealItem>

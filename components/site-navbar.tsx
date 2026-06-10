@@ -1,7 +1,9 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "motion/react"
 import { ChevronDown, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -21,6 +23,8 @@ export function SiteNavbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
+  const pathname = usePathname()
+  const isTransparentDark = !scrolled && pathname !== "/"
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -50,11 +54,15 @@ export function SiteNavbar() {
             : "border-transparent bg-background/30 backdrop-blur-md",
         )}
       >
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <span className="font-heading text-sm font-bold">P</span>
-          </div>
-          <span className="font-heading text-lg font-semibold tracking-tight">Padmas</span>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="Padmas Technologies"
+            width={130}
+            height={32}
+            className="h-8 w-auto object-contain"
+            priority
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
@@ -63,7 +71,14 @@ export function SiteNavbar() {
             onMouseEnter={() => setServicesOpen(true)}
             onMouseLeave={() => setServicesOpen(false)}
           >
-            <button className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground">
+            <button
+              className={cn(
+                "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold transition-colors",
+                isTransparentDark
+                  ? (pathname.startsWith("/services") ? "text-white" : "text-slate-400 hover:text-white")
+                  : (pathname.startsWith("/services") ? "text-[#174BD7]" : "text-foreground/80 hover:text-[#174BD7]")
+              )}
+            >
               Services
               <ChevronDown className="size-3.5" />
             </button>
@@ -78,18 +93,23 @@ export function SiteNavbar() {
                 >
                   <div className="overflow-hidden rounded-xl border border-border/60 bg-popover/95 p-2 shadow-xl backdrop-blur-xl">
                     {SERVICES.map((s) => {
-                      const label = s.slug === "mobile-development" 
-                        ? "Mobile Apps" 
-                        : s.slug === "custom-software-development" 
-                        ? "Software Development" 
-                        : s.slug === "ai-development" 
-                        ? "AI Solutions" 
-                        : s.title;
+                      const href = `/services/${s.slug}`;
+                      const isActive = pathname === href;
+                      const label = s.slug === "mobile-development"
+                        ? "Mobile Apps"
+                        : s.slug === "custom-software-development"
+                          ? "Software Development"
+                          : s.slug === "ai-development"
+                            ? "AI Solutions"
+                            : s.title;
                       return (
                         <Link
                           key={s.slug}
-                          href={`/services/${s.slug}`}
-                          className="block rounded-lg px-3 py-2 text-sm text-foreground/80 transition-colors hover:bg-accent hover:text-accent-foreground"
+                          href={href}
+                          className={cn(
+                            "block rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:bg-accent hover:text-[#174BD7]",
+                            isActive ? "text-[#174BD7]" : "text-foreground/80"
+                          )}
                         >
                           {label}
                         </Link>
@@ -100,15 +120,23 @@ export function SiteNavbar() {
               )}
             </AnimatePresence>
           </div>
-          {NAV_LINKS.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
-            >
-              {l.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((l) => {
+            const isActive = pathname === l.href;
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={cn(
+                  "rounded-lg px-3 py-2 text-sm font-semibold transition-colors",
+                  isTransparentDark
+                    ? (isActive ? "text-white" : "text-slate-400 hover:text-white")
+                    : (isActive ? "text-[#174BD7]" : "text-foreground/80 hover:text-[#174BD7]")
+                )}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="hidden lg:block">
@@ -118,7 +146,10 @@ export function SiteNavbar() {
         </div>
 
         <button
-          className="rounded-lg p-2 lg:hidden"
+          className={cn(
+            "rounded-lg p-2 lg:hidden transition-colors",
+            isTransparentDark ? "text-white hover:bg-white/10" : "text-foreground hover:bg-accent"
+          )}
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -137,35 +168,46 @@ export function SiteNavbar() {
             <div className="flex flex-col gap-1">
               <span className="px-3 py-1 text-xs font-semibold uppercase text-muted-foreground">Services</span>
               {SERVICES.map((s) => {
-                const label = s.slug === "mobile-development" 
-                  ? "Mobile Apps" 
-                  : s.slug === "custom-software-development" 
-                  ? "Software Development" 
-                  : s.slug === "ai-development" 
-                  ? "AI Solutions" 
-                  : s.title;
+                const href = `/services/${s.slug}`;
+                const isActive = pathname === href;
+                const label = s.slug === "mobile-development"
+                  ? "Mobile Apps"
+                  : s.slug === "custom-software-development"
+                    ? "Software Development"
+                    : s.slug === "ai-development"
+                      ? "AI Solutions"
+                      : s.title;
                 return (
                   <Link
                     key={s.slug}
-                    href={`/services/${s.slug}`}
+                    href={href}
                     onClick={() => setMobileOpen(false)}
-                    className="rounded-lg px-3 py-2 text-sm text-foreground/80 hover:bg-accent"
+                    className={cn(
+                      "rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:bg-accent hover:text-[#174BD7]",
+                      isActive ? "text-[#174BD7]" : "text-foreground/80"
+                    )}
                   >
                     {label}
                   </Link>
                 );
               })}
               <div className="my-2 h-px bg-border" />
-              {NAV_LINKS.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-accent"
-                >
-                  {l.label}
-                </Link>
-              ))}
+              {NAV_LINKS.map((l) => {
+                const isActive = pathname === l.href;
+                return (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={cn(
+                      "rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:bg-accent hover:text-[#174BD7]",
+                      isActive ? "text-[#174BD7]" : "text-foreground/80"
+                    )}
+                  >
+                    {l.label}
+                  </Link>
+                );
+              })}
               <Button asChild className="mt-2 rounded-full">
                 <Link href="/contact" onClick={() => setMobileOpen(false)}>
                   Contact Us

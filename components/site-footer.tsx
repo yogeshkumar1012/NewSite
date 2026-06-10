@@ -1,6 +1,7 @@
 import Link from "next/link"
+import Image from "next/image"
 import { SERVICES } from "@/lib/site-data"
-import { Globe, Send, Share2, Mail, MapPin, Phone } from "lucide-react"
+import { Mail, MapPin, Phone } from "lucide-react"
 
 export function SiteFooter() {
   return (
@@ -9,26 +10,42 @@ export function SiteFooter() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-6">
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2">
-              <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <span className="font-heading text-sm font-bold">P</span>
-              </div>
-              <span className="font-heading text-lg font-semibold">Padmas Technologies</span>
+              <Image
+                src="/favicon.png"
+                alt="Padmas Favicon"
+                width={32}
+                height={32}
+                className="size-8 object-contain"
+              />
+              <span className="font-heading text-lg font-semibold text-white">Padmas Technologies</span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-navy-foreground/70">
               Your digital transformation partner — building scalable web, mobile, AI, and enterprise
               software that drives growth.
             </p>
             <div className="mt-6 flex gap-3">
-              {[Share2, Globe, Send].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="flex size-9 items-center justify-center rounded-lg bg-white/10 transition-colors hover:bg-primary"
-                  aria-label="Social link"
+              <a
+                href="https://linkedin.com/company/padmas"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex size-9 items-center justify-center rounded-lg bg-white/10 transition-colors hover:bg-primary hover:text-white"
+                aria-label="LinkedIn"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="size-4"
                 >
-                  <Icon className="size-4" />
-                </a>
-              ))}
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect width="4" height="12" x="2" y="9" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
             </div>
           </div>
 
@@ -102,8 +119,12 @@ export function SiteFooter() {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm text-navy-foreground/60 sm:flex-row">
           <p>© {new Date().getFullYear()} Padmas Technologies. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-navy-foreground">Privacy Policy</a>
-            <a href="#" className="hover:text-navy-foreground">Terms of Service</a>
+            <Link href="/privacy-policy" className="hover:text-navy-foreground transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-navy-foreground transition-colors">
+              Terms of Service
+            </Link>
           </div>
         </div>
       </div>
